@@ -1,0 +1,103 @@
+/* Estilos generales para el navbar */
+.navbar {
+    background-color: #1a202c; /* Color de fondo oscuro */
+    color: white; /* Color del texto */
+    padding: 16px 20px; /* Espaciado interno */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+    z-index: 50; /* Asegura que el navbar esté por encima de otros elementos */
+    position: sticky; /* Fija el navbar en la parte superior al hacer scroll */
+    top: 0;
+    width: 100%;
+  }
+  
+  /* Estilo para los enlaces dentro del navbar */
+  .navbar .nav-links,
+  .navbar .nav-actions {
+    display: flex;
+    justify-content: center; /* Centra los elementos */
+    align-items: center;
+    gap: 20px; /* Espaciado entre los enlaces */
+  }
+  
+  .navbar a {
+    color: white; /* Color de los enlaces */
+    font-size: 16px; /* Tamaño de fuente */
+    text-decoration: none; /* Eliminar subrayado */
+    padding: 8px 16px; /* Espaciado alrededor del texto */
+    border-radius: 4px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Efecto de transición para los enlaces */
+    font-weight: 500; /* Peso de fuente para mayor legibilidad */
+  }
+  
+  /* Efecto al pasar el mouse sobre los enlaces */
+  .navbar a:hover {
+    background-color: #4c51bf; /* Fondo de color al pasar el mouse */
+    color: white; /* Asegura que el texto siga siendo blanco */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño del enlace */
+  }
+  
+  /* Estilo para el botón de cambio de tema */
+  .navbar button {
+    background-color: #4c51bf; /* Fondo del botón */
+    color: white; /* Color del texto */
+    padding: 8px 16px; /* Espaciado interno */
+    border: none; /* Eliminar borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
+    font-weight: 600; /* Peso de fuente para el botón */
+  }
+  
+  /* Efecto al pasar el mouse sobre el botón */
+  .navbar button:hover {
+    background-color: #2d3748; /* Fondo oscuro al pasar el mouse */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño del botón */
+  }
+  
+  /* Estilo para los íconos dentro del navbar */
+  .navbar i {
+    margin-right: 8px; /* Espaciado entre el ícono y el texto */
+    font-size: 18px; /* Tamaño del ícono */
+  }
+  
+  /* Estilo para los enlaces en el contenedor de las acciones (LinkedIn, GitHub) */
+  .navbar .nav-actions a {
+    font-size: 16px; /* Tamaño de fuente de los enlaces de acción */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaciado entre el ícono y el texto */
+    transition: transform 0.2s ease; /* Efecto de transición para el ícono */
+  }
+  
+  /* Efecto de animación para los enlaces de acción */
+  .navbar .nav-actions a:hover {
+    transform: translateY(-3px); /* Efecto de elevar los enlaces al pasar el mouse */
+  }
+  
+  /* Estilo para la estructura de la barra de navegación */
+  .navbar .container {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre los elementos */
+    align-items: center;
+    max-width: 1200px; /* Ancho máximo */
+    margin: 0 auto; /* Centra el contenido */
+  }
+  
+  /* Estilos para el modo oscuro */
+  .dark-mode .navbar {
+    background-color: #2d3748; /* Fondo más oscuro para el modo oscuro */
+  }
+  
+  .dark-mode .navbar a {
+    color: #e2e8f0; /* Color claro para los enlaces en modo oscuro */
+  }
+  
+  .dark-mode .navbar button {
+    background-color: #48bb78; /* Fondo verde para el botón en modo oscuro */
+  }
+  
+  .dark-mode .navbar button:hover {
+    background-color: #38a169; /* Fondo más oscuro para el botón en hover */
+  }
+  

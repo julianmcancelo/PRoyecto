@@ -1,0 +1,92 @@
+/* Estilo para el header */
+header {
+  background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradiente de color */
+  color: #ffffff; /* Texto blanco para el contraste */
+  padding: 80px 20px; /* Espaciado superior e inferior */
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Contenedor principal */
+.header-content {
+  margin-top: 80px; /* Espaciado superior para evitar que el contenido se solape con el navbar */
+  padding: 0 20px; /* Espaciado lateral */
+}
+
+/* Contenedor de la imagen de perfil */
+.profile-container {
+  margin-bottom: 30px; /* Espaciado inferior */
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  position: relative; /* Necesario para posicionar el texto sobre la imagen */
+}
+
+/* Estilo de la imagen de perfil */
+.profile-container img {
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+  width: 120px; /* Ancho de la imagen */
+  height: 120px; /* Alto de la imagen */
+  object-fit: cover; /* Asegura que la imagen se recorte correctamente */
+  border: 4px solid #ffffff; /* Borde blanco alrededor de la imagen */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave alrededor de la imagen */
+  transition: transform 0.5s ease, filter 0.5s ease; /* Transición suave para rotación y desenfoque */
+  transform-style: preserve-3d; /* Para habilitar la rotación 3D */
+}
+
+/* Contenedor del texto "Mi CV" */
+.profile-container .cv-text {
+  position: absolute; /* Posiciona el texto sobre la imagen */
+  top: 50%; /* Centrado verticalmente */
+  left: 50%; /* Centrado horizontalmente */
+  transform: translate(-50%, -50%); /* Alinea el texto al centro */
+  font-size: 1.25rem; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+  color: white; /* Color blanco */
+  opacity: 0; /* Inicialmente invisible */
+  transition: opacity 0.5s ease; /* Transición suave para la visibilidad */
+  text-decoration: none; /* Elimina el subrayado del enlace */
+}
+
+/* Efecto de rotación vertical y desenfoque al pasar el mouse sobre la imagen */
+.profile-container img:hover {
+  transform: rotateY(180deg); /* Gira la imagen en el eje Y */
+  filter: blur(2px); /* Aplica desenfoque */
+}
+
+/* Mostrar el texto "Mi CV" cuando la imagen gire */
+.profile-container img:hover + .cv-text {
+  opacity: 1; /* Hace visible el texto cuando la imagen gira */
+}
+
+/* Estilo del nombre */
+h1 {
+  font-size: 2.5rem; /* Tamaño de fuente grande */
+  font-weight: 700; /* Negrita */
+  margin-bottom: 20px; /* Espaciado inferior */
+  letter-spacing: 1px; /* Espaciado entre letras */
+}
+
+/* Estilo de la descripción debajo del nombre */
+p {
+  font-size: 1.125rem; /* Tamaño de fuente moderado */
+  font-weight: 300; /* Peso de fuente más liviano */
+  opacity: 0.85; /* Opacidad ligeramente reducida para un efecto más sutil */
+  letter-spacing: 0.5px; /* Espaciado entre letras */
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem; /* Reducir tamaño del título en pantallas pequeñas */
+  }
+
+  p {
+    font-size: 1rem; /* Reducir tamaño de la descripción en pantallas pequeñas */
+  }
+
+  .profile-container img {
+    width: 100px; /* Reducir tamaño de la imagen en pantallas pequeñas */
+    height: 100px; /* Reducir tamaño de la imagen en pantallas pequeñas */
+  }
+}

@@ -1,0 +1,66 @@
+/* Estilo del contenedor principal */
+.contact-section {
+  background-color: #16181a; /* Fondo claro */
+  padding: 60px 0;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #4c51bf;
+  margin-bottom: 30px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espacio entre los enlaces */
+  flex-wrap: wrap; /* Asegura que los enlaces se ajusten en pantallas pequeñas */
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #4c51bf;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-link:hover {
+  transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contact-link span {
+  margin-left: 10px;
+}
+
+.icon {
+  font-size: 1.5rem; /* Tamaño de los iconos */
+  color: #4c51bf;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover .icon {
+  color: #2b3c67; /* Cambio de color del icono al pasar el mouse */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .contact-links {
+    flex-direction: column;
+    gap: 15px; /* Espacio entre los enlaces en pantallas pequeñas */
+  }
+
+  .contact-link {
+    width: 80%;
+    margin: 0 auto; /* Centrado en pantallas pequeñas */
+  }
+}

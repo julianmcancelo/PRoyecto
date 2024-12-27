@@ -1,0 +1,51 @@
+/* Estilo del contenedor principal */
+#sobre-mi {
+  background-color: #f7fafc; /* Fondo claro */
+  padding-top: 80px;
+  padding-bottom: 40px; /* Reducir el espacio inferior */
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  min-height: 100vh; /* Altura mínima de la ventana */
+}
+
+/* Estilo de la tarjeta que contiene el texto */
+.about-me-card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+  border-radius: 12px; /* Bordes redondeados */
+  padding: 30px; /* Padding interno */
+  max-width: 90%; /* Ancho máximo */
+  width: 100%; /* Ancho 100% para adaptarse al contenedor */
+  margin: 0 auto; /* Centrado */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.about-me-card:hover {
+  transform: translateY(-5px); /* Elevación al hacer hover */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+}
+
+/* Estilo del título */
+.about-me-title {
+  font-size: 2.25rem; /* Tamaño de fuente más grande */
+  font-weight: 600;
+  color: #4c51bf; /* Color de texto */
+  margin-bottom: 20px;
+  text-align: center; /* Centrado */
+}
+
+/* Estilo del párrafo */
+.about-me-text {
+  font-size: 1.125rem; /* Tamaño de fuente adecuado */
+  color: #4a5568; /* Color de texto gris */
+  line-height: 1.75; /* Altura de línea para mejor legibilidad */
+  margin-bottom: 20px;
+  text-align: justify; /* Justificado para una mejor lectura */
+}
+
+/* Añadir espaciado entre los párrafos */
+.about-me-text + .about-me-text {
+  margin-top: 20px;
+}
