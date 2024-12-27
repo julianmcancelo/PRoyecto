@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Julián Cancelo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> <!-- Si decides usar estilos personalizados -->
+    <style>
+        /* Estilos para la animación de carga */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 50;
+        }
+
+        .loading-bar {
+            width: 80%;
+            background-color: #ccc;
+            border-radius: 5px;
+            height: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background-color: #4c51bf;
+            width: 0%;
+            border-radius: 5px;
+            transition: width 2s ease-in-out;
+        }
+
+        /* Estilos para la animación de la foto */
+        .profile-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin-bottom: 20px;
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+
+        .profile-container img {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        /* Aplicamos el desenfoque y la rotación de la imagen al pasar el ratón */
+        .profile-container:hover img {
+            transform: rotateY(180deg); /* Rota la imagen 180 grados */
+            filter: blur(5px); /* Desenfoque de 5 píxeles */
+        }
+
+        .profile-container:hover .cv-text {
+            opacity: 1; /* Muestra el texto */
+        }
+
+        .cv-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0; /* Inicialmente oculto */
+            transition: opacity 0.3s ease;
+        }
+
+        .cv-text a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .cv-text a:hover {
+            color: #4c51bf;
+        }
+
+        /* Estilos para el header y el nombre */
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            margin-top: -40px; /* Ajuste para acercar foto y nombre */
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .header-content p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        /* Estilos para la barra de navegación */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        nav a:hover {
+            color: #4c51bf;
+        }
+
+        /* Tarjetas para los repositorios */
+        .repo-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .repo-card:hover {
+            transform: scale(1.05);
+        }
+
+        .repo-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .repo-card p {
+            color: #333;
+        }
+
+        .repo-card .repo-link {
+            color: #4c51bf;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .repo-card .repo-link:hover {
+            color: #2b3c67;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-900 font-poppins">
+
+    <!-- Pantalla de carga -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-bar">
+            <div class="loading-progress" id="progress"></div>
+        </div>
+        <p class="text-white">Cargando...</p>
+    </div>
+
+    <!-- Barra de Navegación -->
+    <nav class="fixed top-0 left-0 w-full bg-gray-900 text-white shadow-md py-3 z-50">
+        <div class="container mx-auto flex justify-center space-x-10">
+            <a href="#sobre-mi" class="hover:text-indigo-500 transition">Sobre mí</a>
+            <a href="#proyectos" class="hover:text-indigo-500 transition">Proyectos</a>
+            <a href="#contacto" class="hover:text-indigo-500 transition">Contacto</a>
+            <button id="toggle-theme">Cambiar tema</button>
+
+            <a href="https://www.linkedin.com/in/juliancancelo" target="_blank" class="hover:text-indigo-500 transition">LinkedIn</a>
+            <a href="https://github.com/juliancancelo" target="_blank" class="hover:text-indigo-500 transition"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </nav>
+
+    <!-- Header Principal -->
+    <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-center py-40 relative">
+
+        <div class="container mx-auto header-content">
+            <div class="flex justify-center items-center space-x-6">
+                <!-- Foto de Perfil con animación -->
+                <div class="profile-container">
+                    <img src="foto.jpg" alt="Foto de perfil">
+                    <!-- Texto de CV -->
+                    <div class="cv-text">
+                        <a href="mi-cv.pdf" download>Mi CV</a>
+                    </div>
+                </div>
+
+                <!-- Nombre y Título -->
+                <div>
+                    <h1 class="text-4xl font-bold mb-4">Julián Cancelo</h1>
+                    <p class="text-xl font-light opacity-80">Analista de Sistemas | Desarrollador de Aplicaciones</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección "Sobre mí" -->
+    <section id="sobre-mi" class="container mx-auto py-20 px-4">
+        <div class="bg-white shadow-lg rounded-lg p-10">
+            <h2 class="text-3xl font-semibold text-indigo-600 mb-6">Sobre mí</h2>
+            <p class="text-lg text-gray-700 mb-6">
+                Soy un Analista de Sistemas apasionado por la tecnología y el desarrollo de soluciones innovadoras.
+                Me enfoco en la optimización de procesos y el diseño de aplicaciones que resuelvan problemas reales.
+            </p>
+            <p class="text-lg text-gray-700">
+                Mi experiencia me ha permitido adquirir habilidades en diversas áreas, desde la programación hasta la gestión de proyectos.
+                Siempre estoy buscando nuevos desafíos y oportunidades para aprender y crecer profesionalmente.
+            </p>
+        </div>
+    </section>
+
+    <!-- Sección de Proyectos -->
+    <section id="proyectos" class="bg-gray-50 py-20">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-semibold text-indigo-600 mb-6">Mis Repositorios en GitHub</h2>
+            <div class="grid md:grid-cols-3 gap-8" id="repo-cards">
+                <!-- Los repositorios de GitHub se cargarán aquí -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="bg-gray-900 text-white py-20">
+        <div class="container mx-auto text-center">
+            <p class="text-2xl font-semibold mb-4">Conéctate conmigo:</p>
+            <div class="social-links space-x-5">
+                <a href="https://www.linkedin.com/in/juliancancelo" target="_blank" class="text-indigo-500 hover:text-indigo-700">LinkedIn</a>
+                <a href="mailto:juliancancelo@example.com" class="text-indigo-500 hover:text-indigo-700">Email</a>
+                <a href="https://github.com/juliancancelo" target="_blank" class="text-indigo-500 hover:text-indigo-700"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Progreso de carga simulado con la barra de carga
+        let progress = 0;
+        const progressBar = document.getElementById('progress');
+        
+        const loadingInterval = setInterval(() => {
+            if (progress < 100) {
+                progress += 5;
+                progressBar.style.width = progress + '%';
+            } else {
+                clearInterval(loadingInterval);
+                setTimeout(() => {
+                    document.getElementById("loading-screen").style.display = "none";
+                }, 500); // Suaviza el cierre de la pantalla de carga
+            }
+        }, 100); // Actualiza la barra cada 100ms
+
+        // Cargar repositorios desde GitHub
+        fetch('https://api.github.com/users/julianmcancelo/repos')
+            .then(response => response.json())
+            .then(repos => {
+                const repoContainer = document.getElementById('repo-cards');
+                repos.forEach(repo => {
+                    const repoCard = document.createElement('div');
+                    repoCard.classList.add('repo-card');
+                    repoCard.innerHTML = `
+                        <h3>${repo.name}</h3>
+                        <p>${repo.description || 'Sin descripción'}</p>
+                        <a href="${repo.html_url}" class="repo-link" target="_blank">Ver Repositorio</a>
+                    `;
+                    repoContainer.appendChild(repoCard);
+                });
+            });
+    </script>
+
+    <script>
+        const toggleButton = document.getElementById('toggle-theme');
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
+
+</body>
+
+</html>
+<script>
+    const toggleButton = document.getElementById('toggle-theme');
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        localStorage.setItem('dark-mode', isDarkMode);
+    });
+
+    // Check for saved user preference, if any, on load of the website
+    window.addEventListener('load', () => {
+        const darkMode = localStorage.getItem('dark-mode') === 'true';
+        if (darkMode) {
+            document.body.classList.add('dark-mode');
+        }
+    });
+</script>
